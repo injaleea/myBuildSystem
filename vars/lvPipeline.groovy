@@ -71,7 +71,7 @@ def call(lvProjectPath, lvBuildSpecName, lvVersion, lvBitness) {
 		withCredentials([string(credentialsId: 'github-access-token', variable: 'accessToken')]) {
 			
 			echo 'Running diff...'
-			echo $('env.CHANGE_ID')
+			echo (env.CHANGE_ID)
 		
 			// If this change is a pull request, diff the VIs.
 			if (env.CHANGE_ID) {

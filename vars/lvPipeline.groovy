@@ -74,7 +74,7 @@ def call(lvProjectPath, lvBuildSpecName, lvVersion, lvBitness) {
 			echo 'env.CHANGE_ID'
 		
 			// If this change is a pull request, diff the VIs.
-			if (env.CHANGE_ID) {
+			if ${env.CHANGE_ID} {
 				stage ('Diff VIs'){
 					try {
 					timeout(time: 60, unit: 'MINUTES') {

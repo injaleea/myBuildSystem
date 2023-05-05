@@ -8,7 +8,7 @@ import traceback
 from contextlib import contextmanager
 from os import path
 import time
-
+from pathlib import Path
 
 def diff_vi(old_vi, new_vi, output_dir, operations_dir, lv_version, lv_bitness):
     """
@@ -70,12 +70,13 @@ def export_repo(target_ref):
     :return: A temporaryfile.TemporaryDirectory containing the repository at the given ref
     """
 
-    directory = tempfile.mkdtemp()
+    directory1 = tempfile.mkdtemp()
     print("Temp folder location: " + str(directory))
     print("Current working directory: " + str(os. getcwd()))
     time.sleep(15)
     shutil.copytree(".git", directory+".git")
     time.sleep(15)
+    directory = Path(directory1)
     subprocess.check_call(["git", "fetch"], cwd=directory.name)
     subprocess.check_call(["git", "checkout", "-f", target_ref], cwd=directory.name)
 
@@ -88,7 +89,7 @@ def export_repo(target_ref):
             # are present. Clearing the readonly flag manually fixes this.
             # When https://bugs.python.org/issue26660 is fixed, this code can be removed,
             # and the temporary directory can be returned directly
-            for root, dirs, files in os.walk(directory.name):
+            for root, dirs, files in os.walk(directory):
                 for file in files:
                     os.chmod(root + "/" + file, stat.S_IWRITE)
 

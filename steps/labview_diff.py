@@ -71,14 +71,18 @@ def export_repo(target_ref):
     """
 
     directory = tempfile.NamedTemporaryFile()
+    two = os.getcwd()
+    one = "C:\Users\moopantakath.jaleel\Documents\GitHub\myApplication"
+    os.chdir(one)
     print("Temp folder location: " + str(directory))
+    print("Current working directory: " + str(os. getcwd()))
     time.sleep(15)
     shutil.copytree(".git", path.join(directory.name, ".git"))
     print("Copying directory.name.git" + str(directory.name))
-    print("Current working directory: " + str(os. getcwd()))
     time.sleep(15)
     subprocess.check_call(["git", "fetch"], cwd=directory.name)
     subprocess.check_call(["git", "checkout", "-f", target_ref], cwd=directory.name)
+    os.chdir(two)
 
     @contextmanager
     def cleanup_make_all_writeable(directory):

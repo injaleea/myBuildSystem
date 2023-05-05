@@ -74,7 +74,7 @@ def export_repo(target_ref):
     print("Temp folder location: " + str(directory))
     print("Current working directory: " + str(os. getcwd()))
     time.sleep(15)
-    shutil.copytree(".git", directory.name+".git")
+    shutil.copytree(".git", directory+".git")
     time.sleep(15)
     subprocess.check_call(["git", "fetch"], cwd=directory.name)
     subprocess.check_call(["git", "checkout", "-f", target_ref], cwd=directory.name)

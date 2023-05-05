@@ -7,6 +7,7 @@ import tempfile
 import traceback
 from contextlib import contextmanager
 from os import path
+import time
 
 
 def diff_vi(old_vi, new_vi, output_dir, operations_dir, lv_version, lv_bitness):
@@ -71,7 +72,11 @@ def export_repo(target_ref):
 
     directory = tempfile.TemporaryDirectory()
     print("Temp folder location: " + str(directory))
+    time.sleep(15)
     shutil.copytree(".git", path.join(directory.name, ".git"))
+    print("Copying directory.name.git" + str(directory.name))
+    print("Current working directory: " + str(os. getcwd()))
+    time.sleep(15)
     subprocess.check_call(["git", "fetch"], cwd=directory.name)
     subprocess.check_call(["git", "checkout", "-f", target_ref], cwd=directory.name)
 

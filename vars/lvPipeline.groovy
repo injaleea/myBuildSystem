@@ -73,15 +73,18 @@ def call(lvProjectPath, lvBuildSpecName, lvVersion, lvBitness) {
 			echo 'Running diff...'
 		
 			// If this change is a pull request, diff the VIs.
-			stage ('Diff VIs'){
-				try {
-				timeout(time: 60, unit: 'MINUTES') {
-					lvDiff(lvVersion, lvBitness, accessToken)
-					echo 'Diff Succeeded!'
-				}
-				} catch (err) {
-					currentBuild.result = "SUCCESS"
-					echo "Diff Failed: ${err}"
+			if (env.CHANGE_ID) {
+				stage ('Diff VIs'){
+					
+					try {
+					timeout(time: 60, unit: 'MINUTES') {
+						lvDiff(lvVersion, lvBitness, accessToken)
+						echo 'Diff Succeeded!'
+					}
+					} catch (err) {
+						currentBuild.result = "SUCCESS"
+						echo "Diff Failed: ${err}"
+					}
 				}
 			}
 		}

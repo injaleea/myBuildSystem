@@ -6,7 +6,7 @@ def call(repo, branch, destination = ''){
    bat "mkdir \"$cloneDir\""
 
    if(!branch  || branch == null){
-      branch = 'main'
+      branch = 'master'
    }
 
    dir(cloneDir){

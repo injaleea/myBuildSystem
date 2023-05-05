@@ -70,10 +70,7 @@ def export_repo(target_ref):
     :return: A temporaryfile.TemporaryDirectory containing the repository at the given ref
     """
 
-    directory = tempfile.NamedTemporaryFile()
-    two = os.getcwd()
-    one = r"C:\Users\moopantakath.jaleel\Documents\GitHub\myApplication"
-    os.chdir(one)
+    directory = tempfile.mkdtemp()
     print("Temp folder location: " + str(directory))
     print("Current working directory: " + str(os. getcwd()))
     time.sleep(15)
@@ -82,7 +79,6 @@ def export_repo(target_ref):
     time.sleep(15)
     subprocess.check_call(["git", "fetch"], cwd=directory.name)
     subprocess.check_call(["git", "checkout", "-f", target_ref], cwd=directory.name)
-    os.chdir(two)
 
     @contextmanager
     def cleanup_make_all_writeable(directory):

@@ -8,7 +8,7 @@ echo(env.CHANGE_ID)
 
 def call(lvProjectPath, lvBuildSpecName, lvVersion, lvBitness) {
 
-	def PULL_REQUEST = env.BUILD_NUMBER
+	def PULL_REQUEST = 8
 	echo 'Some variables'
 	echo(PULL_REQUEST)
 	echo(env.BUILD_NUMBER)
@@ -80,7 +80,7 @@ def call(lvProjectPath, lvBuildSpecName, lvVersion, lvBitness) {
 			echo 'Running diff...'
 		
 			// If this change is a pull request, diff the VIs.
-			if (env.CHANGE_ID) {
+			if (PULL_REQUEST) {
 				stage ('Diff VIs'){
 					
 					try {

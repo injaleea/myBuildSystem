@@ -72,7 +72,7 @@ def export_repo(target_ref):
 
     directory = tempfile.NamedTemporaryFile()
     two = os.getcwd()
-    one = "C:\Users\moopantakath.jaleel\Documents\GitHub\myApplication"
+    one = r"C:\Users\moopantakath.jaleel\Documents\GitHub\myApplication"
     os.chdir(one)
     print("Temp folder location: " + str(directory))
     print("Current working directory: " + str(os. getcwd()))

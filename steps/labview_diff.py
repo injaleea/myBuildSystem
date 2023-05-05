@@ -70,7 +70,7 @@ def export_repo(target_ref):
     :return: A temporaryfile.TemporaryDirectory containing the repository at the given ref
     """
 
-    directory = tempfile.TemporaryDirectory()
+    directory = tempfile.NamedTemporaryFile()
     print("Temp folder location: " + str(directory))
     time.sleep(15)
     shutil.copytree(".git", path.join(directory.name, ".git"))

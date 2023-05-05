@@ -1,5 +1,8 @@
 #!/usr/bin/env groovy
 def PULL_REQUEST = env.CHANGE_ID
+echo 'Some variables'
+echo(PULL_REQUEST)
+echo(env.CHANGE_ID)
 
 //ENTER THE ABOVE INFORMATION
 

@@ -8,6 +8,10 @@ echo(env.CHANGE_ID)
 
 def call(lvProjectPath, lvBuildSpecName, lvVersion, lvBitness) {
 
+	def PULL_REQUEST = env.CHANGE_ID
+	echo 'Some variables'
+	echo(PULL_REQUEST)
+	echo(env.CHANGE_ID)
 	switch(lvVersion){  //This is to abstract out the different Jenkinsfile conventions of setting version to 14.0 instead of 2014.
 	  case "18.0":
 		lvVersion="2018"
